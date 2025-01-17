@@ -1,7 +1,7 @@
 "use client";
 
 import { MatchContext, MatchContextProvider } from "@/contexts/match.context";
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 
 interface Igame {
   cols: number;
@@ -9,6 +9,7 @@ interface Igame {
   qtyCells: number;
   qtyCardsPerTeam: number;
   qtyTraps: number;
+  language: string;
 }
 
 export default function Game(props: Igame) {
@@ -25,13 +26,14 @@ const Fragments = ({
   qtyCardsPerTeam,
   qtyTraps,
   cols,
+  language,
 }: Igame): ReactNode => {
   const { words, fetchWords, maps, fetchMaps, gameLoading, setGameLoading } =
     useContext(MatchContext);
 
   useEffect(() => {
     Promise.all([
-      fetchWords(qtyCells, "pt-BR"),
+      fetchWords(qtyCells, language),
       fetchMaps(qtyCardsPerTeam, qtyTraps, qtyCells),
     ]).then(() => {
       setGameLoading(false);
