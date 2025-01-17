@@ -1,8 +1,7 @@
 "use client";
 
-import { getMaps, IgetMapsResponse } from "@/services/maps.service";
-import { getWords } from "@/services/words.service";
-import { useEffect, useState } from "react";
+import { MatchContext, MatchContextProvider } from "@/contexts/match.context";
+import { ReactNode, useContext, useEffect, useState } from "react";
 
 interface Igame {
   cols: number;
@@ -12,45 +11,37 @@ interface Igame {
   qtyTraps: number;
 }
 
-export default function Game({
-  cols,
-  rows,
+export default function Game(props: Igame) {
+  return (
+    <MatchContextProvider>
+      <Fragments {...props} />
+    </MatchContextProvider>
+  );
+}
+
+const Fragments = ({
   qtyCells,
+  rows,
   qtyCardsPerTeam,
   qtyTraps,
-}: Igame) {
-  const [words, setWords] = useState<string[]>([]);
-  const [maps, setMaps] = useState<IgetMapsResponse | null>();
-  const [loading, setLoading] = useState(true);
+  cols,
+}: Igame): ReactNode => {
+  const { words, fetchWords, maps, fetchMaps, gameLoading, setGameLoading } =
+    useContext(MatchContext);
 
   useEffect(() => {
-    const fetchWords = async () => {
-      const responseWords = await getWords({
-        qty: qtyCells,
-        language: "pt-BR",
-      });
-      setWords(responseWords);
-    };
-
-    const fetchMaps = async () => {
-      const responseMaps: IgetMapsResponse = await getMaps({
-        qtyCardsPerTeam,
-        totalOfCards: qtyCells,
-        qtyTraps,
-      });
-
-      setMaps(responseMaps);
-    };
-
-    Promise.all([fetchWords(), fetchMaps()]).then(() => {
-      setLoading(false);
+    Promise.all([
+      fetchWords(qtyCells, "pt-BR"),
+      fetchMaps(qtyCardsPerTeam, qtyTraps, qtyCells),
+    ]).then(() => {
+      setGameLoading(false);
     });
   }, []);
 
   return (
     <div className="w-fll p-4">
       <div className="w-full flex flex-col gap-2">
-        {loading || !maps ? (
+        {gameLoading || !maps ? (
           <div className="w-full flex items-center justify-center py-20">
             <div className="spinner my-10" />
           </div>
@@ -81,4 +72,4 @@ export default function Game({
       </div>
     </div>
   );
-}
+};
