@@ -63,9 +63,10 @@ export default function ClientSideFragments({
                   return (
                     <div
                       className={`bg-red-100 flex-1 text-center justify-center flex p-2 border ${
-                        maps.team_a.includes(wordIndex) && "bg-red-500"
-                      } ${maps.team_b.includes(wordIndex) && "bg-blue-500"}  ${
-                        maps.traps.includes(wordIndex) && "bg-black text-white"
+                        maps.team_a.includes(wordIndex) && "!bg-red-500"
+                      } ${maps.team_b.includes(wordIndex) && "!bg-blue-500"}  ${
+                        maps.traps.includes(wordIndex) &&
+                        "!bg-black !text-white"
                       }`}
                       key={`${rowsIndex}-${colIndex}`}
                     >
