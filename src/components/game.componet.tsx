@@ -4,7 +4,7 @@ import { getMaps, IgetMapsResponse } from "@/services/maps.service";
 import { getWords } from "@/services/words.service";
 import { useEffect, useState } from "react";
 
-interface IclientSideFragments {
+interface Igame {
   cols: number;
   rows: number;
   qtyCells: number;
@@ -12,13 +12,13 @@ interface IclientSideFragments {
   qtyTraps: number;
 }
 
-export default function ClientSideFragments({
+export default function Game({
   cols,
   rows,
   qtyCells,
   qtyCardsPerTeam,
   qtyTraps,
-}: IclientSideFragments) {
+}: Igame) {
   const [words, setWords] = useState<string[]>([]);
   const [maps, setMaps] = useState<IgetMapsResponse | null>();
   const [loading, setLoading] = useState(true);

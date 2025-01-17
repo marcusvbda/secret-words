@@ -1,4 +1,4 @@
-import ClientSideFragments from "./clientSide";
+import Game from "@/components/game.componet";
 
 export default async function MatchPage() {
   const cols = 5; // pegar do contexto do jogo
@@ -8,7 +8,7 @@ export default async function MatchPage() {
   const qtyTraps = 2; // pegar do contexto do jogo
 
   return (
-    <ClientSideFragments
+    <Game
       cols={cols}
       rows={rows}
       qtyCells={qtyCells}
