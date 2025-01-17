@@ -2,20 +2,20 @@
 import { capitalize } from "@/helpers/string.helper";
 import { runCompletion } from "./gpt.service";
 
-interface IgetDictionary {
+interface IgetWords {
   qty?: number;
   language?: string;
   avoid?: string[];
 }
 
-export const getDictionary = async (
-  params: IgetDictionary | null = null
+export const getWords = async (
+  params: IgetWords | null = null
 ): Promise<string[]> => {
   const qty = params?.qty ?? 10;
   const language = params?.language ?? "en";
   const avoid = (params?.avoid ?? []).join(", ");
 
-  // pra evitar gastar tokens da openai
+  // // pra evitar gastar tokens da openai
   return [
     "Cachorro",
     "Caminhar",
@@ -35,23 +35,13 @@ export const getDictionary = async (
     "Nike",
     "Revolução",
     "Programação",
-    "Pais",
+    "Bairro",
     "Cidade",
     "Pessoa",
     "Futebol",
     "Cachorro",
     "Caminhar",
-    "Bonito",
-    "Gato",
-    "Nike",
-    "Revolução",
-    "Programação",
-    "Pais",
-    "Cidade",
-    "Pessoa",
-    "Futebol",
-    "Cachorro",
-    "Caminhar",
+    "Feio",
   ];
 
   try {
@@ -60,14 +50,12 @@ export const getDictionary = async (
       messages: [
         {
           role: "system",
-          content:
-            "You are an assistant that generates word lists based on user input and you should respond only with the words only, separated by | and nothing else.",
+          content: `You are an assistant that generates word lists based on user input and you should respond only with the words only, separated by | and nothing else. The words should be of any type.
+            Dot not use the words "${avoid}".`,
         },
         {
           role: "user",
-          content: `Generate ${qty} common unique words in ${language}".
-            The words should be a mix of nouns, verbs, adjectives, animals, brands, hystory, professions, coutries and cities.
-            Dot not use the words "${avoid}".`,
+          content: `Generate ${qty} unique random words in ${language}".`,
         },
       ],
     });
