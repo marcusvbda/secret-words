@@ -37,9 +37,9 @@ export const GameComponent = (): ReactNode => {
 
   return (
     <div className="w-fll p-4">
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col gap-1">
         {Array.from({ length: rows }, (_, rowsIndex: number) => (
-          <div className="w-full flex justify-center gap-2" key={rowsIndex}>
+          <div className="w-full flex justify-center gap-1" key={rowsIndex}>
             {Array.from({ length: cols }, (_, colIndex: number) => {
               const wordIndex = rowsIndex * cols + colIndex;
               return (
@@ -102,12 +102,12 @@ const Card = ({
   return (
     <div
       onClick={handleClick}
-      className={`flex-1 text-center justify-center flex p-2 border border-gray-500 gap-1 flex-col ${getClass(
+      className={`flex-1 text-center justify-center flex p-1 border border-gray-500 flex-col ${getClass(
         wordIndex
       )} `}
     >
       {type === "player" && (
-        <div className="rotate-180 font-bold ">{words[wordIndex]}</div>
+        <div className="rotate-180 font-bold">{words[wordIndex]}</div>
       )}
       <div className="font-bold">{words[wordIndex]}</div>
     </div>

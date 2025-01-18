@@ -92,7 +92,7 @@ export const StartGame = (): ReactNode => {
   }
 
   return (
-    <div className="w-full flex flex-col gap-2">
+    <div className="w-full flex flex-col py-10 gap-2">
       {step === "start" && (
         <StartStep setStep={setStep} setLoading={setLoading} />
       )}
