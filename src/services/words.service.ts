@@ -5,44 +5,13 @@ import { runCompletion } from "./gpt.service";
 interface IgetWords {
   qty?: number;
   language?: string;
-  avoid?: string[];
 }
 
 export const getWords = async (
   params: IgetWords | null = null
 ): Promise<string[]> => {
-  const qty = params?.qty ?? 10;
-  const language = params?.language ?? "en";
-  const avoid = (params?.avoid ?? []).join(", ");
-
-  // // pra evitar gastar tokens da openai
-  return [
-    "Cachorro",
-    "Caminhar",
-    "Bonito",
-    "Gato",
-    "Nike",
-    "Revolução",
-    "Programação",
-    "Pais",
-    "Cidade",
-    "Pessoa",
-    "Futebol",
-    "Cachorro",
-    "Caminhar",
-    "Bonito",
-    "Gato",
-    "Nike",
-    "Revolução",
-    "Programação",
-    "Bairro",
-    "Cidade",
-    "Pessoa",
-    "Futebol",
-    "Cachorro",
-    "Caminhar",
-    "Feio",
-  ];
+  const qty = params?.qty ?? 25;
+  const language = params?.language ?? "pt-BR";
 
   try {
     const responseText = await runCompletion({
@@ -50,8 +19,7 @@ export const getWords = async (
       messages: [
         {
           role: "system",
-          content: `You are an assistant that generates word lists based on user input and you should respond only with the words only, separated by | and nothing else. The words should be of any type.
-            Dot not use the words "${avoid}".`,
+          content: `You are an assistant that generates word lists based on user input and you should respond only with the words only, separated by | and nothing else. The words should be of any type.`,
         },
         {
           role: "user",

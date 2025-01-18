@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import { StartGame } from "@/components/startGame.component";
 
 export default function HomePage() {
-  return redirect("/match/xyz");
+  return <StartGame />;
 }
