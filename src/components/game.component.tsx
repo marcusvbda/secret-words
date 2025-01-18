@@ -97,7 +97,7 @@ const Card = ({
     if (type === "player" && !turned) {
       confirm("Virar carta?") && setTurned(true);
     }
-  }, [type]);
+  }, [type, turned]);
 
   return (
     <div

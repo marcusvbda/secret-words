@@ -10,6 +10,7 @@ interface IProps extends IGame {
 }
 
 export default function Fragment(props: IProps): ReactNode {
+  console.log(props.maps.traps, props.maps.team_a, props.maps.team_b.length);
   return (
     <MatchContextProvider currentMatch={props as IGame}>
       <BoardView type={props.type} />

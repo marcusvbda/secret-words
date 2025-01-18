@@ -23,7 +23,9 @@ export const getMaps = async (params: IgetMaps): Promise<IgetMapsResponse> => {
     let numbers: number[] = [];
     while (numbers.length < count) {
       const number = Math.floor(Math.random() * totalOfCards);
-      if (!exclude.includes(number)) numbers.push(number);
+      if (!exclude.includes(number) && !numbers.includes(number)) {
+        numbers.push(number);
+      }
     }
     return Array.from(numbers);
   };
