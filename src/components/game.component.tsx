@@ -88,7 +88,7 @@ const Card = ({
         if (maps.traps.includes(wordIndex)) return "bg-black !text-white";
         return "bg-gray-300";
       }
-      return "cursor-pointer hover:bg-gray-200 transition-all duration-300";
+      return "cursor-pointer";
     },
     [maps, type, turned]
   );
