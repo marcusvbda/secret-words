@@ -102,12 +102,12 @@ const Card = ({
   return (
     <div
       onClick={handleClick}
-      className={`flex-1 text-center justify-center flex p-2 border border-gray-500 gap-4 flex-col ${getClass(
+      className={`flex-1 text-center justify-center flex p-2 border border-gray-500 gap-1 flex-col ${getClass(
         wordIndex
       )} `}
     >
       {type === "player" && (
-        <div className="rotate-180 font-bold">{words[wordIndex]}</div>
+        <div className="rotate-180 font-bold ">{words[wordIndex]}</div>
       )}
       <div className="font-bold">{words[wordIndex]}</div>
     </div>

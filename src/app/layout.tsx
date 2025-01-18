@@ -17,9 +17,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning className={inter.className}>
-        <h1 className="text-4xl font-bold text-center mt-2 mb-10">
-          Secret Words
-        </h1>
         {children}
       </body>
     </html>
