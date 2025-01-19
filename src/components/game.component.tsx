@@ -106,9 +106,6 @@ const Card = ({
         wordIndex
       )} `}
     >
-      {type === "player" && (
-        <div className="rotate-180 font-bold">{words[wordIndex]}</div>
-      )}
       <div className="font-bold">{words[wordIndex]}</div>
     </div>
   );
